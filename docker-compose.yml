@@ -1,0 +1,18 @@
+version: "3"
+services:
+  port-forwarding:
+    image: vpn-port-forward
+    build:
+      args:
+        - TARGET_PORT=${TARGET_PORT}
+    cap_add:
+      - NET_ADMIN
+    ports:
+      - ${LOCAL_PORT}:${TARGET_PORT}        
+    environment:
+      - VPN_HOST=${VPN_HOST}
+      - VPN_USSER=${VPN_USSER}
+      - VPN_PASSWORD=${VPN_PASSWORD}
+      - VPN_PIN=$PIN
+      - TARGET_HOST=${TARGET_HOST}
+      - TARGET_PORT=${TARGET_PORT}
